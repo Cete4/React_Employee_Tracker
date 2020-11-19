@@ -1,0 +1,1 @@
+This is blank file that forces the better viewability.
