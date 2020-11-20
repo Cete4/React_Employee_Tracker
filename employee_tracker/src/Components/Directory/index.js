@@ -3,7 +3,7 @@ import Container from "./Container";
 import Row from "./Row";
 import Col from "./Col";
 
-class OmdbContainer extends Component {
+class Directory extends Component {
     state = {
         search: "",
         employees: []
@@ -66,4 +66,4 @@ class OmdbContainer extends Component {
     }
 }
 
-export default OmdbContainer;
+export default Directory;
