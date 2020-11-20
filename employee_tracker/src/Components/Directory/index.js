@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import Container from "./Container";
-import Row from "./Row";
-import Col from "./Col";
+import Container from "../Container";
+import Row from "../Row";
+import Col from "../Col";
+import API from "../../utils/API";
+import "./style.css";
 
 class Directory extends Component {
     state = {
@@ -11,10 +13,14 @@ class Directory extends Component {
 
     // When this component mounts, search for the movie "The Matrix"
     componentDidMount() {
-        this.searchMovies("The Matrix");
+        API.getEmployee()
+            .then((res) => {
+                this.setState({
+                    employees: res.data.results
+                });
+            })
+            .catch((err) => console.error());
     }
-
-
 
     handleInputChange = event => {
         const value = event.target.value;
@@ -32,36 +38,14 @@ class Directory extends Component {
 
     render() {
         return (
-            <Container>
-                <Row>
-                    <Col size="md-8">
-                        <Card
-                            heading={this.state.result.Title || "Search for a Movie to Begin"}
-                        >
-                            {this.state.result.Title ? (
-                                <MovieDetail
-                                    title={this.state.result.Title}
-                                    src={this.state.result.Poster}
-                                    director={this.state.result.Director}
-                                    genre={this.state.result.Genre}
-                                    released={this.state.result.Released}
-                                />
-                            ) : (
-                                    <h3>No Results to Display</h3>
-                                )}
-                        </Card>
-                    </Col>
-                    <Col size="md-4">
-                        <Card heading="Search">
-                            <SearchForm
-                                value={this.state.search}
-                                handleInputChange={this.handleInputChange}
-                                handleFormSubmit={this.handleFormSubmit}
-                            />
-                        </Card>
-                    </Col>
-                </Row>
-            </Container>
+            <div>
+                <div id="top">
+                    <h1 id="header">Employee Tracker</h1>
+                </div>
+                <div className="input-group mx-auto">
+                    <input onChange={this.handleInputChange} name="search" value={this.state.search} type="text" className="form-control" placeholder="Search" />
+                </div>
+            </div >
         );
     }
 }
