@@ -5,8 +5,8 @@ import Col from "./Col";
 
 class OmdbContainer extends Component {
     state = {
-        result: {},
-        search: ""
+        search: "",
+        employees: []
     };
 
     // When this component mounts, search for the movie "The Matrix"
@@ -14,11 +14,7 @@ class OmdbContainer extends Component {
         this.searchMovies("The Matrix");
     }
 
-    searchMovies = query => {
-        API.search(query)
-            .then(res => this.setState({ result: res.data }))
-            .catch(err => console.log(err));
-    };
+
 
     handleInputChange = event => {
         const value = event.target.value;
