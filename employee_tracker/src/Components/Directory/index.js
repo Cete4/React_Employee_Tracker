@@ -4,6 +4,7 @@ import Row from "../Row";
 import Col from "../Col";
 import API from "../../utils/API";
 import "./style.css";
+import Table from 'react-bootstrap/Table'
 
 class Directory extends Component {
     state = {
@@ -44,6 +45,37 @@ class Directory extends Component {
                 </div>
                 <div className="input-group mx-auto">
                     <input onChange={this.handleInputChange} name="search" value={this.state.search} type="text" className="form-control" placeholder="Search" />
+                </div>
+                <div>
+                    <Table striped bordered hover>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Username</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td colSpan="2">Larry the Bird</td>
+                                <td>@twitter</td>
+                            </tr>
+                        </tbody>
+                    </Table>
                 </div>
             </div >
         );
