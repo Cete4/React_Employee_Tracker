@@ -24,8 +24,8 @@ class Directory extends Component {
     }
 
     handleInputChange = event => {
-        const value = event.target.value;
-        const name = event.target.name;
+        let value = event.target.value;
+        let name = event.target.name;
         this.setState({
             [name]: value
         });
