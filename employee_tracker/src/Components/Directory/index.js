@@ -23,12 +23,12 @@ class Directory extends Component {
             .catch((err) => console.error());
     }
 
-    searchEmployees = (event) => {
-        event.preventDefault();
-        for (let i = 0; i < this.state.employees.length + 1; i++) {
-            console.log("Working at index: " + i);
-        }
-
+    handleInputChange = event => {
+        const value = event.target.value;
+        const name = event.target.name;
+        this.setState({
+            [name]: value
+        });
     };
 
     // Sorts by index returned 
@@ -46,14 +46,17 @@ class Directory extends Component {
                 <div id="top">
                     <h1 id="header">Employee Tracker</h1>
                 </div>
-                <div className="input-group mx-auto">
-                    <input id="search" value={this.state.search} type="text" className="form-control" placeholder="Search" />
-                    <div className="input-group">
-                        <button onClick={this.searchEmployees} className="btn btn-primary mt-3">Search</button>
-                    </div>
-                    <div className="input-group">
-                        <button onClick={this.sortEmployees} className="btn btn-primary mt-3">Sort</button>
-                    </div>
+                <div className="form-group mx-auto">
+                    <input
+                        onChange={this.handleInputChange}
+                        value={this.value}
+                        name="search"
+                        type="text"
+                        className="form-control"
+                        placeholder="Search"
+                        id="search"
+                    />
+                    <button onClick={this.sortEmployees} className="btn btn-primary mt-3">Sort</button>
                 </div>
                 <div>
                     <Table striped bordered hover>
