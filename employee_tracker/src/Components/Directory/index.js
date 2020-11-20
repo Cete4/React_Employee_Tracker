@@ -53,27 +53,28 @@ class Directory extends Component {
                                 <th>#</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
-                                <th>Username</th>
+                                <th>Phone Number</th>
+                                <th>Email</th>
+                                <th>Location</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td colSpan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
+                            {this.state.employees.map((result, index) => {
+                                return (
+                                    <tr key={index}>
+                                        <td>{result.index}</td>
+                                        <td>
+                                            {result.name.first}
+                                        </td>
+                                        <td>
+                                            {result.name.last}
+                                        </td>
+                                        <td>{result.phone}</td>
+                                        <td>{result.email}</td>
+                                        <td>{result.location.city}</td>
+                                    </tr>
+                                );
+                            })}
                         </tbody>
                     </Table>
                 </div>
