@@ -23,18 +23,22 @@ class Directory extends Component {
             .catch((err) => console.error());
     }
 
-
-    // When the form is submitted, search the OMDB API for the value of `this.state.search`
-    handleFormSubmit = event => {
+    searchEmployees = (event) => {
         event.preventDefault();
-        this.searchMovies(this.state.search);
+        for (let i = 0; i < this.state.employees.length + 1; i++) {
+            console.log("Working at index: " + i);
+        }
+
     };
 
-    searchMovies = query => {
-        API.getEmployee(query)
-            .then(res => this.setState({ result: res.data }))
-            .catch(err => console.log(err));
-    };
+    // Sorts by index returned 
+    sortEmployees = (event) => {
+        event.preventDefault();
+        const sorted = this.state.employees.sort((a, b) => a.name.index > b.name.index ? 1 : -1);
+        this.setState({
+            employees: sorted
+        });
+    }
 
     render() {
         return (
@@ -43,9 +47,12 @@ class Directory extends Component {
                     <h1 id="header">Employee Tracker</h1>
                 </div>
                 <div className="input-group mx-auto">
-                    <input name="search" value={this.state.search} type="text" className="form-control" placeholder="Search" />
-                    <div className="input-group-append">
-                        <button onClick={this.handleFormSubmit} className="btn btn-primary mt-3">Search </button>
+                    <input id="search" value={this.state.search} type="text" className="form-control" placeholder="Search" />
+                    <div className="input-group">
+                        <button onClick={this.searchEmployees} className="btn btn-primary mt-3">Search</button>
+                    </div>
+                    <div className="input-group">
+                        <button onClick={this.sortEmployees} className="btn btn-primary mt-3">Sort</button>
                     </div>
                 </div>
                 <div>
@@ -64,7 +71,7 @@ class Directory extends Component {
                             {this.state.employees.map((result, index) => {
                                 return (
                                     <tr key={index}>
-                                        <td>{result.index}</td>
+                                        <td>{index + 1}</td>
                                         <td>
                                             {result.name.first}
                                         </td>
